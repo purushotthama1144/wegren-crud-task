@@ -1,0 +1,55 @@
+
+<div class="container text-center">
+    <mat-card>
+        <mat-card-content>
+            <div class="header-text">
+                Add Contact Datails
+            </div>
+            <form class="formWrap" (ngSubmit)="onSubmit()" #myForm="ngForm" (ngModelChange)="isFormTouched = true">
+
+                <div class="formName">
+                    <mat-form-field class="forminr" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input type="text" name="firstName" matInput [(ngModel)]="firstName" required placeholder="First Name">
+                        <mat-error>First Name required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="formName">
+                    <mat-form-field class="forminr" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" name="lastName" [(ngModel)]="lastName" matInput required placeholder="Last Name">
+                        <mat-error>Last Name required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="formName">
+                    <mat-form-field class="forminr" appearance="outline">
+                        <mat-label>Email ID</mat-label>
+                        <input matInput type="email" name="email" [(ngModel)]="email" required placeholder="Email ID">
+                        <mat-error>Email is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="formName">
+                    <mat-form-field class="forminr" appearance="outline">
+                        <mat-label>Contact No</mat-label>
+                        <input matInput type="text" name="mobile" [(ngModel)]="mobile" required pattern="^[0-9]{10}$" placeholder="Contact No">
+                        <mat-error>Contact No is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="formName upload-btn-wrapper">
+                    <button class="btn">Upload a Profile Pic</button>
+                    <input type="file"  accept=".png, .jpg, .jpeg" (change)="onChangeImage($event)" name="image" required/>
+                </div>
+                <div class="formName">
+                    <button mat-raised-button color="primary" type="submit">Add Contact</button>
+                </div>
+              
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-content>
+            <button mat-raised-button color="warn" (click)="goBack()">Back</button>
+        </mat-card-content>
+    </mat-card>
+</div>

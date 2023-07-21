@@ -1,0 +1,30 @@
+.main-header {
+    background: #653131;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    color: #fff;
+}
+
+.content-wrap {
+    padding: 30px 0;
+}
+
+li {
+    display: inline-block;
+    list-style: none;
+
+    a {
+        font-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+}
