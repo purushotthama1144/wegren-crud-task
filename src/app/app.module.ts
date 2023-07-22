@@ -9,6 +9,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { WarningComponent } from './components/warning/warning.component';
+import { PersonDetailsComponent } from './components/person-details/person-details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { WarningComponent } from './components/warning/warning.component';
     ContactListComponent,
     ContactFormComponent,
     WarningComponent,
+    PersonDetailsComponent,
   ],
   imports: [
     BrowserModule,

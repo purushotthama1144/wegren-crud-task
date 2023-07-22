@@ -8,6 +8,7 @@ import { ContactService } from 'src/app/service/contact.service';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WarningComponent } from '../warning/warning.component';
+import { PersonDetailsComponent } from '../person-details/person-details.component';
 
 @Component({
   selector: 'app-contact-list',
@@ -25,7 +26,7 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   displayedColumns: string[] = ['Serial No' , 'First Name', 'Last Name', 'Mobile No', 'Email Id' , 'Profile Pic' , 'Action Buttons'];
   
 
-  constructor(private contactService: ContactService , private sanitizer: DomSanitizer , public dialog: MatDialog) { }
+  constructor(private contactService: ContactService , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getContactList()
@@ -70,9 +71,22 @@ export class ContactListComponent implements OnInit , AfterViewInit {
     console.log(element)
     this.dialog.open(ContactFormComponent, {
       data: { 
+        operationType: 'update',
         contact: element
       },
       disableClose: true,
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
+  }
+
+  openPersonDetail(contact): void {
+    console.log(contact)
+    this.dialog.open(PersonDetailsComponent, {
+      data: { 
+        operationType: 'detail',
+        person: contact
+      },
       panelClass: 'custom-modalbox',
       autoFocus: false
     });

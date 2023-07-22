@@ -51,8 +51,9 @@
             <ng-container matColumnDef="Action Buttons">
               <th mat-header-cell *matHeaderCellDef> Action Buttons </th>
               <td mat-cell *matCellDef="let element">
-                <button mat-raised-button (click)="updateContact(element)">Edit</button>
-                <button mat-raised-button (click)="deleteContact(element.id)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="updateContact(element)" style="margin-right: 10px;">Edit</button>
+                <button mat-stroked-button color="accent" (click)="deleteContact(element.id)" style="margin-right: 10px;">Delete</button>
+                <button mat-stroked-button color="warn" (click)="openPersonDetail(element)">Details</button>
             </td>
             </ng-container>
           

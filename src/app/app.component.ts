@@ -14,7 +14,8 @@ export class AppComponent {
   openAddContact() {
     this.dialog.open(ContactFormComponent, {
       data: { 
-        contact: '',
+        operationType: 'add',
+        contact: 'add',
       },
       disableClose: true,
       panelClass: 'custom-modalbox',

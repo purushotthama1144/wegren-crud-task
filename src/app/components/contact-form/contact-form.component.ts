@@ -19,7 +19,9 @@ export class ContactFormComponent implements OnInit {
   email:any;
   mobile:any
   contact = new Contact;
-  isUpdate:boolean = false;
+  operationType:string;
+  showAddForm:boolean = false;
+  showUpdateForm:boolean = false;
   @ViewChild('myForm', { static: false }) myForm: NgForm;
 
   constructor(private contactService: ContactService ,  
@@ -29,14 +31,18 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data)
-    if(this.data.contact != '' || this.data.contact != null) {
+    if(this.data.operationType == 'add'){
+      this.showAddForm = true;
+      this.showUpdateForm = false;
+    }
+
+    if(this.data.operationType == 'update'){
+      this.showAddForm = false;
+      this.showUpdateForm = true;
       this.firstName = this.data.contact.firstName
       this.lastName = this.data.contact.lastName
       this.email = this.data.contact.email
-      this.mobile = this.data.contact.mobile
-      this.isUpdate = true
-    } else {
-      this.isUpdate = false
+      this.mobile = this.data.contact.mobile  
     }
   }
 
@@ -77,7 +83,7 @@ export class ContactFormComponent implements OnInit {
       image: this.convertedImage
     };
 
-    if (this.isUpdate) {
+    if(this.data.operationType == 'update'){
       if (!this.isFormValid()) {
         this.snackbarService.openSnackBar("mat-warn", "Please add Details");
       } else {

@@ -1,44 +1,90 @@
-<div class="header-text">
-    Add Contact
-</div>
-
-<form class="formWrap" (ngSubmit)="onSubmit()" #myForm="ngForm">
-    <div class="formName">
-        <mat-form-field class="forminr" appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input type="text" name="firstName" matInput [(ngModel)]="firstName" required placeholder="First Name">
-            <mat-error>First Name required</mat-error>
-        </mat-form-field>
+<ng-container *ngIf="showAddForm">
+    <div class="header-text">
+        Add Contact
     </div>
-    <div class="formName">
-        <mat-form-field class="forminr" appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input type="text" name="lastName" [(ngModel)]="lastName" matInput required placeholder="Last Name">
-            <mat-error>Last Name required</mat-error>
-        </mat-form-field>
+    <form class="formWrap" (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input type="text" name="firstName" matInput [(ngModel)]="firstName" required placeholder="First Name">
+                <mat-error>First Name required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" name="lastName" [(ngModel)]="lastName" matInput required placeholder="Last Name">
+                <mat-error>Last Name required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Email ID</mat-label>
+                <input matInput type="email" name="email" [(ngModel)]="email" required placeholder="Email ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <mat-error>Email is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Contact No</mat-label>
+                <input matInput type="text" name="mobile" [(ngModel)]="mobile" required (keypress)="keyPress($event)" placeholder="Contact No" maxlength="10">
+                <mat-error>Contact No is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName upload-btn-wrapper">
+            <button class="btn">Upload a Profile Pic</button>
+            <input type="file" accept=".png, .jpg, .jpeg" (change)="onChangeImage($event)" name="image" required/>
+        </div>
+        <div class="formName">
+            <mat-dialog-actions class="forminr" align="end">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-raised-button color="primary" type="submit">Add Contact</button>
+            </mat-dialog-actions>
+        </div>
+    </form>
+</ng-container>
+<ng-container *ngIf="showUpdateForm">
+    <div class="header-text">
+        Edit Contact
     </div>
-    <div class="formName">
-        <mat-form-field class="forminr" appearance="outline">
-            <mat-label>Email ID</mat-label>
-            <input matInput type="email" name="email" [(ngModel)]="email" required placeholder="Email ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-            <mat-error>Email is required</mat-error>
-        </mat-form-field>
-    </div>
-    <div class="formName">
-        <mat-form-field class="forminr" appearance="outline">
-            <mat-label>Contact No</mat-label>
-            <input matInput type="text" name="mobile" [(ngModel)]="mobile" required (keypress)="keyPress($event)" placeholder="Contact No" maxlength="10">
-            <mat-error>Contact No is required</mat-error>
-        </mat-form-field>
-    </div>
-    <div class="formName upload-btn-wrapper">
-        <button class="btn">Upload a Profile Pic</button>
-        <input type="file" accept=".png, .jpg, .jpeg" (change)="onChangeImage($event)" name="image" />
-    </div>
-    <div class="formName">
-        <mat-dialog-actions class="forminr" align="end">
-            <button mat-button mat-dialog-close>Cancel</button>
-            <button mat-raised-button color="primary" type="submit">Add Contact</button>
-        </mat-dialog-actions>
-    </div>
-</form>
+    <form class="formWrap" (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input type="text" name="firstName" matInput [(ngModel)]="firstName" required placeholder="First Name">
+                <mat-error>First Name required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" name="lastName" [(ngModel)]="lastName" matInput required placeholder="Last Name">
+                <mat-error>Last Name required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Email ID</mat-label>
+                <input matInput type="email" name="email" [(ngModel)]="email" required placeholder="Email ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <mat-error>Email is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName">
+            <mat-form-field class="forminr" appearance="outline">
+                <mat-label>Contact No</mat-label>
+                <input matInput type="text" name="mobile" [(ngModel)]="mobile" required (keypress)="keyPress($event)" placeholder="Contact No" maxlength="10">
+                <mat-error>Contact No is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="formName upload-btn-wrapper">
+            <button class="btn">Upload a Profile Pic</button>
+            <input type="file" accept=".png, .jpg, .jpeg" (change)="onChangeImage($event)" name="image"/>
+        </div>
+        <div class="formName">
+            <mat-dialog-actions class="forminr" align="end">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-raised-button color="primary" type="submit">Update Contact</button>
+            </mat-dialog-actions>
+        </div>
+    </form>
+</ng-container>
