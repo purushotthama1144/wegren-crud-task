@@ -42,7 +42,7 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   }
 
   refreshDataSource(){
-    this.dataSource = new MatTableDataSource(this.contacts);
+    this.dataSource = new MatTableDataSource(this.contacts.reverse());
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
