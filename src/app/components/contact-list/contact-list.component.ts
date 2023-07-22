@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Contact } from 'src/app/model/contact.model';
 import { ContactService } from 'src/app/service/contact.service';
+import { ContactFormComponent } from '../contact-form/contact-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { WarningComponent } from '../warning/warning.component';
 
 @Component({
   selector: 'app-contact-list',
@@ -19,12 +22,10 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['Serial No' , 'First Name', 'Last Name', 'Mobile No', 'Email Id' , 'Profile Pic'];
+  displayedColumns: string[] = ['Serial No' , 'First Name', 'Last Name', 'Mobile No', 'Email Id' , 'Profile Pic' , 'Action Buttons'];
   
 
-  constructor(private contactService: ContactService , private sanitizer: DomSanitizer) { 
-    
-  }
+  constructor(private contactService: ContactService , private sanitizer: DomSanitizer , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getContactList()
@@ -51,6 +52,29 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   }
 
   deleteContact(id: number): void {
-    this.contactService.deleteContact(id);
+    const dialogRef = this.dialog.open(WarningComponent, {
+      width: '300px',
+      data: 'Are you sure you want to delete this contact?'
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.contactService.deleteContact(id);
+        this.contacts = this.contactService.getContacts();
+        this.getContactList()
+      }
+    });
+  }
+
+  updateContact(element) {
+    console.log(element)
+    this.dialog.open(ContactFormComponent, {
+      data: { 
+        contact: element
+      },
+      disableClose: true,
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
   }
 }

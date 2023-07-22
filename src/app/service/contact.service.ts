@@ -22,7 +22,7 @@ export class ContactService {
 
   addContact(contact: Contact): void {
     const contacts = this.getContactsFromLocalStorage();
-    const newContact: Contact = { ...contact, id: Date.now() };
+    const newContact: Contact = { ...contact };
     contacts.push(newContact);
     this.saveContactsToLocalStorage(contacts);
   }
@@ -30,6 +30,16 @@ export class ContactService {
   deleteContact(id: any): void {
     let contacts = this.getContactsFromLocalStorage();
     contacts = contacts.filter(contact => contact.id !== id);
+    console.log(contacts)
     this.saveContactsToLocalStorage(contacts);
+  }
+
+  updateContact(updatedContact: Contact): void {
+    const contacts = this.getContacts();
+    const index = contacts.findIndex(c => c.email === updatedContact.email);
+    if (index !== -1) {
+      contacts[index] = updatedContact;
+      localStorage.setItem(this.storageKey, JSON.stringify(contacts));
+    }
   }
 }

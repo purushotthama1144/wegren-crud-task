@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'wegren-crud-task';
+
+  constructor(public dialog: MatDialog) { }
+
+  openAddContact() {
+    this.dialog.open(ContactFormComponent, {
+      data: { 
+        contact: '',
+      },
+      disableClose: true,
+      panelClass: 'custom-modalbox',
+      autoFocus: false
+    });
+  }
 }

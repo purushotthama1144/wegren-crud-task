@@ -8,12 +8,14 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
+import { WarningComponent } from './components/warning/warning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactFormComponent,
+    WarningComponent,
   ],
   imports: [
     BrowserModule,
