@@ -30,7 +30,6 @@ export class ContactService {
   deleteContact(id: any): void {
     let contacts = this.getContactsFromLocalStorage();
     contacts = contacts.filter(contact => contact.id !== id);
-    console.log(contacts)
     this.saveContactsToLocalStorage(contacts);
   }
 

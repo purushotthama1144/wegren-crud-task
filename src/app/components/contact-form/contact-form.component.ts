@@ -30,7 +30,6 @@ export class ContactFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data)
     if(this.data.operationType == 'add'){
       this.showAddForm = true;
       this.showUpdateForm = false;

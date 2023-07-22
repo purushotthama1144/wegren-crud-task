@@ -68,7 +68,6 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   }
 
   updateContact(element) {
-    console.log(element)
     this.dialog.open(ContactFormComponent, {
       data: { 
         operationType: 'update',
@@ -81,7 +80,6 @@ export class ContactListComponent implements OnInit , AfterViewInit {
   }
 
   openPersonDetail(contact): void {
-    console.log(contact)
     this.dialog.open(PersonDetailsComponent, {
       data: { 
         operationType: 'detail',
